@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rodilo/global_variables.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,7 +17,7 @@ class HomeScreen extends StatelessWidget {
               child: Container(
                 color: colorTheme.primary,
                 child: GestureDetector(
-                  onTap: () => context.go('/calculate'),
+                  onTap: () => context.go(calculateRoute),
                   child: Center(
                     child: Text(
                       'Calculate',
@@ -31,14 +32,18 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: GestureDetector(
-                onTap: () => context.go('/estimate'),
-                child: const Center(
-                  child: Text(
-                    'Estimate',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 40,
+              child: Container(
+                color: colorTheme.secondary,
+                child: GestureDetector(
+                  onTap: () => context.go(estimateRoute),
+                  child: Center(
+                    child: Text(
+                      'Estimate',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: colorTheme.onSecondary,
+                        fontSize: 40,
+                      ),
                     ),
                   ),
                 ),

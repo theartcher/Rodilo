@@ -10,16 +10,18 @@ const maxCardValue = 20;
 const minCardValue = 1;
 
 // Color Palette
-const Color primaryColor = Color(0xFF665D55);
-const Color onPrimaryColor = Color(0xFFEDEDED);
-const Color secondaryColor = Color(0xFFD2C5AF);
-const Color onSecondaryColor = Color(0xFF35312E);
-const Color redDiceColor = Color(0xFFBF3E25);
-const Color onRedDiceColor = Color(0xFFFFFFFF);
-const Color blueDiceColor = Color(0xFF2B5DBC);
-const Color onBlueDiceColor = Color(0xFFFFFFFF);
-const Color yellowDiceColor = Color(0xFFDAA93C);
-const Color onYellowDiceColor = Color(0xFF000000);
+const Color primaryColor = Color.fromARGB(255, 102, 93, 85);
+const Color onPrimaryColor = Color.fromRGBO(237, 237, 237, 1);
+const Color secondaryColor = Color.fromRGBO(210, 197, 175, 1);
+const Color onSecondaryColor = Color.fromRGBO(53, 49, 46, 1);
+
+// Dice Colors
+const Color redDiceColor = Color.fromRGBO(191, 62, 37, 1);
+const Color onRedDiceColor = Color.fromRGBO(255, 255, 255, 1);
+const Color blueDiceColor = Color.fromRGBO(43, 93, 188, 1);
+const Color onBlueDiceColor = Color.fromRGBO(255, 255, 255, 1);
+const Color yellowDiceColor = Color.fromRGBO(218, 169, 60, 1);
+const Color onYellowDiceColor = Color.fromRGBO(0, 0, 0, 1);
 
 var theme = ThemeData(
   useMaterial3: true,
