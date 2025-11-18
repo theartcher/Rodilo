@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:rodilo/classes/dice_size.dart';
 import 'package:rodilo/classes/dice_type.dart';
 import 'package:rodilo/global_variables.dart';
 
 class Dice extends StatelessWidget {
   final DiceType diceType;
   final bool disabled;
+  final DiceSize size;
   final VoidCallback? onPress;
 
   const Dice({
     super.key,
     required this.diceType,
-    this.disabled = false,
     this.onPress,
+    this.size = DiceSize.small,
+    this.disabled = false,
   });
 
   Color _getDiceColor() {
@@ -47,18 +50,35 @@ class Dice extends StatelessWidget {
     }
   }
 
+  double _getDiceSize() {
+    switch (size) {
+      case DiceSize.small:
+        return defaultDiceDimensions;
+      case DiceSize.large:
+        return defaultDiceDimensions * 1.5;
+    }
+  }
+
+  double _getFontSize() {
+    switch (size) {
+      case DiceSize.small:
+        return defaultDiceFontSize;
+      case DiceSize.large:
+        return defaultDiceFontSize * 1.5;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final opacity = disabled ? 0.5 : 1.0;
-    final diceWidthAndHeight = 90.0;
 
     return GestureDetector(
-      onTap: disabled ? null : onPress,
+      onTap: onPress,
       child: Opacity(
         opacity: opacity,
         child: Container(
-          width: diceWidthAndHeight,
-          height: diceWidthAndHeight,
+          width: _getDiceSize(),
+          height: _getDiceSize(),
           decoration: BoxDecoration(
             color: _getDiceColor(),
             borderRadius: BorderRadius.circular(8),
@@ -70,7 +90,7 @@ class Dice extends StatelessWidget {
                 '${_getNumber()}',
                 style: TextStyle(
                   color: _getOnDiceColor(),
-                  fontSize: 48,
+                  fontSize: _getFontSize(),
                 ),
               ),
             ),

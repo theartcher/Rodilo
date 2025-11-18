@@ -1,0 +1,1 @@
+enum DiceSize { small, large }

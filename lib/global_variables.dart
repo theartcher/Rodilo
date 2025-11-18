@@ -6,6 +6,12 @@ import 'package:rodilo/screens/calculate.dart';
 import 'package:rodilo/screens/estimate.dart';
 import 'package:rodilo/screens/home.dart';
 
+// Animation & Padding
+const defaultSpacing = 8.0;
+const defaultSwipeVelocity = 700;
+const defaultDiceDimensions = 90.0;
+const defaultDiceFontSize = 48.0;
+
 // Card Values
 const maxCardValue = 20;
 const minCardValue = 1;
@@ -24,6 +30,7 @@ const Color onBlueDiceColor = Color.fromRGBO(255, 255, 255, 1);
 const Color yellowDiceColor = Color.fromRGBO(218, 169, 60, 1);
 const Color onYellowDiceColor = Color.fromRGBO(0, 0, 0, 1);
 
+// Define theme
 var theme = ThemeData(
   useMaterial3: true,
   textTheme: GoogleFonts.luckiestGuyTextTheme(),
@@ -40,10 +47,12 @@ var theme = ThemeData(
   ),
 );
 
+// Routes
 const calculateRoute = '/calculate';
 const estimateRoute = '/estimate';
 const homeRoute = '/';
 
+// Router
 final GoRouter router = GoRouter(
   routes: <RouteBase>[
     GoRoute(
@@ -61,6 +70,7 @@ final GoRouter router = GoRouter(
         ),
         GoRoute(
           path: estimateRoute,
+          pageBuilder: GoTransitions.slide.toTop.call,
           builder: (BuildContext context, GoRouterState state) {
             return const EstimateScreen();
           },

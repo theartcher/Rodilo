@@ -27,118 +27,116 @@ class CalculateScreen extends StatelessWidget {
       onVerticalDragEnd: (details) {
         final velocity = details.primaryVelocity ?? 0;
 
-        if (velocity < -100) {
+        if (velocity < -defaultSwipeVelocity) {
           Navigator.pop(context);
         }
       },
       child: Scaffold(
         backgroundColor: colorTheme.primary,
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            spacing: 8,
-            children: [
-              Text(
-                "I want to roll a...",
-                style: TextStyle(
-                  fontSize: 30,
-                  color: colorTheme.onPrimary,
-                ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: defaultSpacing,
+          children: [
+            Text(
+              "I want to roll a...",
+              style: TextStyle(
+                fontSize: 30,
+                color: colorTheme.onPrimary,
               ),
-              ListenableBuilder(
-                listenable: store,
-                builder: (context, child) {
-                  return Text(
-                    "${store.desiredRoll}",
-                    style: TextStyle(
-                      fontSize: 80,
-                      color: colorTheme.onPrimary,
-                    ),
-                  );
-                },
+            ),
+            ListenableBuilder(
+              listenable: store,
+              builder: (context, child) {
+                return Text(
+                  "${store.desiredRoll}",
+                  style: TextStyle(
+                    fontSize: 80,
+                    color: colorTheme.onPrimary,
+                  ),
+                );
+              },
+            ),
+            Text(
+              "You should throw...",
+              style: TextStyle(
+                fontSize: 30,
+                color: colorTheme.onPrimary,
               ),
-              Text(
-                "You should throw...",
-                style: TextStyle(
-                  fontSize: 30,
-                  color: colorTheme.onPrimary,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: ListenableBuilder(
-                    listenable: store,
-                    builder: (context, child) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: store.die
-                            .map(
-                              (diceType) => Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 4.0,
-                                ),
-                                child: Dice(
-                                  diceType: diceType,
-                                ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: ListenableBuilder(
+                  listenable: store,
+                  builder: (context, child) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: store.die
+                          .map(
+                            (diceType) => Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 4.0,
                               ),
-                            )
-                            .toList(),
-                      );
-                    }),
-              ),
-              ListenableBuilder(
-                listenable: store,
-                builder: (context, child) {
-                  return Column(
-                    children: [
-                      Row(
-                        children: [
-                          DesiredAmountButton(
-                            onPress: () => store.decrement(1),
-                            amountToChange: -1,
-                            isDisabled: isButtonDisabled(-1),
-                          ),
-                          DesiredAmountButton(
-                            onPress: () => store.increment(1),
-                            amountToChange: 1,
-                            isDisabled: isButtonDisabled(1),
+                              child: Dice(
+                                diceType: diceType,
+                              ),
+                            ),
                           )
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          DesiredAmountButton(
-                            onPress: () => store.decrement(5),
-                            amountToChange: -5,
-                            isDisabled: isButtonDisabled(-5),
-                          ),
-                          DesiredAmountButton(
-                            onPress: () => store.increment(5),
-                            amountToChange: 5,
-                            isDisabled: isButtonDisabled(5),
-                          )
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          DesiredAmountButton(
-                            onPress: () => store.decrement(10),
-                            amountToChange: -10,
-                            isDisabled: isButtonDisabled(-10),
-                          ),
-                          DesiredAmountButton(
-                            onPress: () => store.increment(10),
-                            amountToChange: 10,
-                            isDisabled: isButtonDisabled(10),
-                          )
-                        ],
-                      )
-                    ],
-                  );
-                },
-              )
-            ],
-          ),
+                          .toList(),
+                    );
+                  }),
+            ),
+            ListenableBuilder(
+              listenable: store,
+              builder: (context, child) {
+                return Column(
+                  children: [
+                    Row(
+                      children: [
+                        DesiredAmountButton(
+                          onPress: () => store.decrement(1),
+                          amountToChange: -1,
+                          isDisabled: isButtonDisabled(-1),
+                        ),
+                        DesiredAmountButton(
+                          onPress: () => store.increment(1),
+                          amountToChange: 1,
+                          isDisabled: isButtonDisabled(1),
+                        )
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        DesiredAmountButton(
+                          onPress: () => store.decrement(5),
+                          amountToChange: -5,
+                          isDisabled: isButtonDisabled(-5),
+                        ),
+                        DesiredAmountButton(
+                          onPress: () => store.increment(5),
+                          amountToChange: 5,
+                          isDisabled: isButtonDisabled(5),
+                        )
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        DesiredAmountButton(
+                          onPress: () => store.decrement(10),
+                          amountToChange: -10,
+                          isDisabled: isButtonDisabled(-10),
+                        ),
+                        DesiredAmountButton(
+                          onPress: () => store.increment(10),
+                          amountToChange: 10,
+                          isDisabled: isButtonDisabled(10),
+                        )
+                      ],
+                    )
+                  ],
+                );
+              },
+            )
+          ],
         ),
       ),
     );
