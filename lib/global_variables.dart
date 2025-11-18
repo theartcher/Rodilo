@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:go_transitions/go_transitions.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rodilo/screens/calculate.dart';
 import 'package:rodilo/screens/estimate.dart';
@@ -53,6 +54,7 @@ final GoRouter router = GoRouter(
       routes: <RouteBase>[
         GoRoute(
           path: calculateRoute,
+          pageBuilder: GoTransitions.slide.toBottom.call,
           builder: (BuildContext context, GoRouterState state) {
             return const CalculateScreen();
           },

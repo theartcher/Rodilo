@@ -8,23 +8,24 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorTheme = Theme.of(context).colorScheme;
+    final fontSize = 40.0;
 
     return Scaffold(
       body: Center(
         child: Column(
           children: [
             Expanded(
-              child: Container(
-                color: colorTheme.primary,
-                child: GestureDetector(
-                  onTap: () => context.go(calculateRoute),
+              child: GestureDetector(
+                onTap: () => context.go(calculateRoute),
+                child: Container(
+                  color: colorTheme.primary,
                   child: Center(
                     child: Text(
                       'Calculate',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: colorTheme.onPrimary,
-                        fontSize: 40,
+                        fontSize: fontSize,
                       ),
                     ),
                   ),
@@ -32,17 +33,17 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: Container(
-                color: colorTheme.secondary,
-                child: GestureDetector(
-                  onTap: () => context.go(estimateRoute),
+              child: GestureDetector(
+                onTap: () => context.go(estimateRoute),
+                child: Container(
+                  color: colorTheme.secondary,
                   child: Center(
                     child: Text(
                       'Estimate',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: colorTheme.onSecondary,
-                        fontSize: 40,
+                        fontSize: fontSize,
                       ),
                     ),
                   ),
