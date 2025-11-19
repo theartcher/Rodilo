@@ -25,11 +25,11 @@ class HomeScreen extends StatelessWidget {
             final velocity = details.primaryVelocity ?? 0;
 
             if (velocity > defaultSwipeVelocity) {
-              context.go(estimateRoute);
+              context.go(calculateRoute);
             }
 
             if (velocity < -defaultSwipeVelocity) {
-              context.go(calculateRoute);
+              context.go(estimateRoute);
             }
           },
           child: Column(
