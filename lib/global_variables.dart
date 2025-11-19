@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_transitions/go_transitions.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:rodilo/screens/calculate.dart';
 import 'package:rodilo/screens/estimate.dart';
 import 'package:rodilo/screens/home.dart';
+import 'package:rodilo/screens/scoreboard.dart';
 
 // Animation & Padding
 const defaultSpacing = 8.0;
 const defaultSwipeVelocity = 700;
 const defaultDiceDimensions = 90.0;
 const defaultDiceFontSize = 48.0;
+const defaultRounding = 16.0;
+const maxPlayerNameLength = 25;
 
 // Card Values
 const maxCardValue = 20;
@@ -21,6 +23,12 @@ const Color primaryColor = Color.fromARGB(255, 102, 93, 85);
 const Color onPrimaryColor = Color.fromRGBO(237, 237, 237, 1);
 const Color secondaryColor = Color.fromRGBO(210, 197, 175, 1);
 const Color onSecondaryColor = Color.fromRGBO(53, 49, 46, 1);
+const Color tertiaryColor = Color.fromRGBO(113, 154, 173, 1);
+const Color onTertiaryColor = Color.fromRGBO(255, 255, 255, 1);
+
+// Row Colors
+const Color oddRowSurfaceColor = Color(0xFFD5D5D5);
+const Color evenRowSurfaceColor = onPrimaryColor;
 
 // Dice Colors
 const Color redDiceColor = Color.fromRGBO(191, 62, 37, 1);
@@ -33,13 +41,15 @@ const Color onYellowDiceColor = Color.fromRGBO(0, 0, 0, 1);
 // Define theme
 var theme = ThemeData(
   useMaterial3: true,
-  textTheme: GoogleFonts.luckiestGuyTextTheme(),
+  fontFamily: "LuckiestGuy",
   colorScheme: ColorScheme(
     brightness: Brightness.light,
     primary: primaryColor,
     onPrimary: onPrimaryColor,
     secondary: secondaryColor,
     onSecondary: onSecondaryColor,
+    tertiary: tertiaryColor,
+    onTertiary: onTertiaryColor,
     error: Colors.red.shade700,
     onError: Colors.white,
     surface: Colors.white,
@@ -50,6 +60,7 @@ var theme = ThemeData(
 // Routes
 const calculateRoute = '/calculate';
 const estimateRoute = '/estimate';
+const scoreBoardRoute = '/scoreboard';
 const homeRoute = '/';
 
 // Router
@@ -66,6 +77,13 @@ final GoRouter router = GoRouter(
           pageBuilder: GoTransitions.slide.toBottom.call,
           builder: (BuildContext context, GoRouterState state) {
             return const CalculateScreen();
+          },
+        ),
+        GoRoute(
+          path: scoreBoardRoute,
+          pageBuilder: GoTransitions.slide.toLeft.call,
+          builder: (BuildContext context, GoRouterState state) {
+            return const ScoreBoardScreen();
           },
         ),
         GoRoute(

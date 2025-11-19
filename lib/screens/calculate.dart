@@ -64,7 +64,7 @@ class CalculateScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              padding: const EdgeInsets.symmetric(vertical: defaultSpacing * 2),
               child: ListenableBuilder(
                   listenable: store,
                   builder: (context, child) {
@@ -74,7 +74,7 @@ class CalculateScreen extends StatelessWidget {
                           .map(
                             (diceType) => Padding(
                               padding: const EdgeInsets.symmetric(
-                                horizontal: 4.0,
+                                horizontal: defaultSpacing / 2,
                               ),
                               child: Dice(
                                 diceType: diceType,
@@ -88,51 +88,55 @@ class CalculateScreen extends StatelessWidget {
             ListenableBuilder(
               listenable: store,
               builder: (context, child) {
-                return Column(
-                  children: [
-                    Row(
-                      children: [
-                        DesiredAmountButton(
-                          onPress: () => store.decrement(1),
-                          amountToChange: -1,
-                          isDisabled: isButtonDisabled(-1),
-                        ),
-                        DesiredAmountButton(
-                          onPress: () => store.increment(1),
-                          amountToChange: 1,
-                          isDisabled: isButtonDisabled(1),
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        DesiredAmountButton(
-                          onPress: () => store.decrement(5),
-                          amountToChange: -5,
-                          isDisabled: isButtonDisabled(-5),
-                        ),
-                        DesiredAmountButton(
-                          onPress: () => store.increment(5),
-                          amountToChange: 5,
-                          isDisabled: isButtonDisabled(5),
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        DesiredAmountButton(
-                          onPress: () => store.decrement(10),
-                          amountToChange: -10,
-                          isDisabled: isButtonDisabled(-10),
-                        ),
-                        DesiredAmountButton(
-                          onPress: () => store.increment(10),
-                          amountToChange: 10,
-                          isDisabled: isButtonDisabled(10),
-                        )
-                      ],
-                    )
-                  ],
+                return Padding(
+                  padding:
+                      const EdgeInsets.fromLTRB(0, 0, defaultSpacing * 2, 0),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          DesiredAmountButton(
+                            onPress: () => store.decrement(1),
+                            amountToChange: -1,
+                            isDisabled: isButtonDisabled(-1),
+                          ),
+                          DesiredAmountButton(
+                            onPress: () => store.increment(1),
+                            amountToChange: 1,
+                            isDisabled: isButtonDisabled(1),
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          DesiredAmountButton(
+                            onPress: () => store.decrement(5),
+                            amountToChange: -5,
+                            isDisabled: isButtonDisabled(-5),
+                          ),
+                          DesiredAmountButton(
+                            onPress: () => store.increment(5),
+                            amountToChange: 5,
+                            isDisabled: isButtonDisabled(5),
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          DesiredAmountButton(
+                            onPress: () => store.decrement(10),
+                            amountToChange: -10,
+                            isDisabled: isButtonDisabled(-10),
+                          ),
+                          DesiredAmountButton(
+                            onPress: () => store.increment(10),
+                            amountToChange: 10,
+                            isDisabled: isButtonDisabled(10),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 );
               },
             )
